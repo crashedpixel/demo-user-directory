@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import mockUserService from '../../services/user-service/mock.user.service';
+import { UserService } from '../../services/user-service/user.service';
 import { UserData } from 'src/app/userdata';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
@@ -10,8 +12,16 @@ import { UserData } from 'src/app/userdata';
 export class UserDetailsComponent implements OnInit {
   user: UserData;
 
-  constructor() {
-    this.user = mockUserService.getUserDetails;
+  constructor(private userService: UserService,
+    private route: ActivatedRoute,
+    private router: Router) {
+    // this.user = mockUserService.getUserDetails;
+
+    this.route.paramMap.subscribe(params => {
+      userService.getUserDetails(params.get('id')).subscribe((data) => {
+        this.user = data;
+      })
+    });
   }
 
   ngOnInit() {

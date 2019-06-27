@@ -1,9 +1,9 @@
 <div class="user-results">
     <div *ngFor="let user of users" class="user-item container clearfix">
         <div class="content clearfix">
-        <a href="" class="user-item__link"></a>
+        <a href="/users/edit/{{ user.id }}" class="user-item__link"></a>
             <div *ngIf="user.image">
-                <img class="user-item__avatar" src="https://demo.iofficeconnect.com{{ user.image }}" alt="">
+                <img class="user-item__avatar" src="https://demo.iofficeconnect.com{{ user.image.smallSquare }}" alt="">
             </div>
             <div *ngIf="!user.image">
                 <svg class="icon-avatar user-item__avatar" role="img" aria-hidden="true">
