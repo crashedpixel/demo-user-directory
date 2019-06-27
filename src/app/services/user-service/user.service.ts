@@ -43,17 +43,14 @@ export class UserService {
     return this.http.delete(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}`) as Observable<Response>;
   }
 
-  createUser(firstName: string, lastName: string, email: string): Observable<any> {
-    let httpParams = new HttpParams({
-      fromObject: {
+  createUser(firstName: string, lastName: string, email: string, userName: string): Observable<any> {
+    return this.http.post(`https://demo.iofficeconnect.com/external/api/rest/v2/users/`, JSON.stringify({
         'firstName': firstName,
         'lastName': lastName,
-        'email': email
-      }
-    });
-
-    return this.http.post(`https://demo.iofficeconnect.com/external/api/rest/v2/users/`, '', { params: httpParams });
-    // {"firstName":"Michael","userType":{"name":"Employee","active":true,"id":8,"$route":"users/types","reqParams":null,"restangularized":true,"fromServer":true,"parentResource":null,"restangularCollection":false},"custom05":false,"floorWarden":false,"specialNeeds":false,"lastName":"Turner","email":"turnerm@gmail.coms","userName":"turner","company":"ioffice","address":null,"buildingid":null,"floor":null,"mailcenterid":null,"custom07":null,"password":null,"permissions":[]};
+        'email': email,
+        'userName': userName,
+        'company': 'ioffice'
+      }), { headers: this.headers });
   }
 
   getUserDetails(id: string): Observable<UserData> {
