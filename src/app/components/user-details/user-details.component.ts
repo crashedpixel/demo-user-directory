@@ -27,4 +27,14 @@ export class UserDetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  confirmDeleteUser(e) {
+    e.preventDefault();
+
+    const res = confirm('Please confirm you want to delete user');
+    if (res) {
+      this.userService.deleteUser(this.user.id).subscribe((data) => {
+        this.router.navigate(['/users']);
+      });
+    }
+  }
 }

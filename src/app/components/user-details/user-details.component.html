@@ -9,7 +9,7 @@
             <label class="user-details__label"><span>Last name:</span> <input class="user-details__input" name="lastName" type="text" [value]="user.lastName"></label>
             <label class="user-details__label"><span>Email:</span> <input class="user-details__input" name="email" type="text" [value]="user.email"></label>
             <button class="user-details__btn">Back</button>
-            <button class="user-details__btn">Delete</button>
+            <button class="user-details__btn" (click)="confirmDeleteUser($event)">Delete</button>
             <button class="user-details__btn">Update</button>
         </form>
     </div>

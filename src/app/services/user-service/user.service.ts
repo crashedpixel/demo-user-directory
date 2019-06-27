@@ -40,7 +40,7 @@ export class UserService {
   }
 
   deleteUser(id: number): Observable<Response> {
-    return this.http.delete(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}`) as Observable<Response>;
+    return this.http.delete(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}`, { headers: this.headers }) as Observable<Response>;
   }
 
   createUser(firstName: string, lastName: string, email: string, userName: string): Observable<any> {
