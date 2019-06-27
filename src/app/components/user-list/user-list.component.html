@@ -12,10 +12,10 @@
             </div>
             <p class="user-item__name">{{ user.firstName + ' ' + user.lastName }} <span *ngIf="user.jobTitle" class="user-item__job-title">{{ user.jobTitle }}</span></p>
             <p class="user-item__extra">
-                <span class="spread">Email: <span>{{ user.email }}</span></span>
-                <span class="spread">phone: <span>{{ user.phone }}</span></span>
-                <span class="spread">building: <span>{{ user.room.floor.building.name }}</span></span>
-                <span class="spread">floor: <span>{{ user.room.floor.name }}</span></span>
+                <span *ngIf="user.email" class="spread">Email: <span>{{ user.email }}</span></span>
+                <span *ngIf="user.phone" class="spread">Phone: <span>{{ user.phone }}</span></span>
+                <span *ngIf="user.room" class="spread">Building: <span>{{ user.room.floor.building.name }}</span></span>
+                <span *ngIf="user.room" class="spread">Floor: <span>{{ user.room.floor.name }}</span></span>
             </p>
         </div>
     </div>
