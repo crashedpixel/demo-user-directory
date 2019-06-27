@@ -1,0 +1,22 @@
+<div class="user-results">
+    <div *ngFor="let user of users" class="user-item container clearfix">
+        <div class="content clearfix">
+        <a href="" class="user-item__link"></a>
+            <div *ngIf="user.image">
+                <img class="user-item__avatar" src="https://demo.iofficeconnect.com{{ user.image }}" alt="">
+            </div>
+            <div *ngIf="!user.image">
+                <svg class="icon-avatar user-item__avatar" role="img" aria-hidden="true">
+                <use xlink:href="#icon-avatar"></use>
+                </svg>
+            </div>
+            <p class="user-item__name">{{ user.firstName + ' ' + user.lastName }} <span *ngIf="user.jobTitle" class="user-item__job-title">{{ user.jobTitle }}</span></p>
+            <p class="user-item__extra">
+                <span class="spread">Email: <span>{{ user.email }}</span></span>
+                <span class="spread">phone: <span>{{ user.phone }}</span></span>
+                <span class="spread">building: <span>{{ user.room.floor.building.name }}</span></span>
+                <span class="spread">floor: <span>{{ user.room.floor.name }}</span></span>
+            </p>
+        </div>
+    </div>
+</div>

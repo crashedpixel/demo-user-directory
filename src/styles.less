@@ -1,0 +1,273 @@
+ html, body {
+	border: 0;
+	font-family: "Helvetica-Neue", "Helvetica", Arial, sans-serif;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+}
+
+div, span, object, iframe, img, table, caption, thead, tbody,
+tfoot, tr, tr, td, article, aside, canvas, details, figure, hgroup, menu,
+nav, footer, header, section, summary, mark, audio, video {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cit, code,
+del, dfn, em, ins, q, samp, small, strong, sub, sup, b, i, hr, dl, dt, dd,
+ol, ul, li, fieldset, legend, label {
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+}
+
+article, aside, canvas, figure, figure img, figcaption, hgroup,
+footer, header, nav, section, audio, video {
+	display: block;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  caption, th, td {
+    text-align: left;
+    vertical-align: middle;
+  }
+}
+
+a img {
+  border: 0;
+}
+
+:focus {
+  outline: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.clearfix { display: inline-block; }
+
+* html .clearfix { height: 1%; }
+
+.clearfix { display: block; }
+
+.screenreader {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+}
+
+.button-search {
+    background: none;
+    border: 0;
+    position: absolute;
+    right: 15px;
+    top: 5px;
+    cursor: pointer;
+    padding: 0;
+}
+
+.input-search {
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+    padding-right: 60px;
+    border-left: 0;
+    border-right: 0;
+    border-top: 1px solid #c1c1c1;
+    border-bottom: 1px solid #c1c1c1;
+    outline: 0;
+
+    &:focus, &:active {
+        box-shadow: 0px 0px 5px  #4D90FE;
+    }
+}
+
+header {
+    padding: 10px 0 0;
+    background-color: #fafcff;
+    vertical-align: bottom;
+}
+
+.ioffice-logo {
+    height: 30px;
+    margin: 0 20px 10px;
+}
+
+.user-item {
+    padding: 10px 0;
+
+    &:hover {
+        background-color: #f5f5f5;
+    }
+
+    &__name {
+        padding-top: 10px;
+        font-size: 14px;
+    }
+
+    &__job-title {
+        display: block;
+        font-size: 12px;
+        color: #6b6a6a;
+    }
+
+    &__link {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+
+        &:focus {
+            box-shadow: 0px 0px 5px  #4D90FE;
+        }
+    }
+
+    &__avatar {
+        float: left;
+        margin-right: 10px;
+        margin-left: 15px;
+
+        img& {
+            width: 65px;
+            clip-path: circle(40%);
+        }
+    }
+
+    &__extra {
+        display: none;
+        margin-top: 8px;
+        font-size: 14px;
+        .spread {
+            margin-right: 10px;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+.icon {
+    &-search,
+    &-close {
+        width: 30px;
+        height: 30px;
+
+        &:hover {
+            fill: #4e4e4e;
+        }
+    }
+
+    &-avatar {
+        width: 65px;
+        height: 65px;
+    }
+
+    &-back-to-top {
+        height: 32px;
+        width: 32px;
+        fill: white;
+        background-color: black;
+        border-radius: 32px;
+        opacity: 0.5;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        transition: all 0.25s ease-in-out;
+
+        &:hover {
+            bottom: 24px;
+            opacity: 0.8;
+        }
+    }
+}
+
+.user-details {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 80vh;
+    background: #f5f5f5;
+    padding: 10px 20px;
+    animation: 0.5s slideIn forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        bottom: -100vh;
+    }
+    100% {
+        bottom: 0;
+    }
+}
+
+@media (min-width: 640px) {
+    .content {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    header {
+        padding-bottom: 20px;
+    }
+    .ioffice-logo {
+        float: left;
+        height: 60px;
+    }
+    .search-form {
+        float: right;
+        width: 60%;
+        margin-right: 20px;
+        margin-top: 20px;
+    }
+    .input-search {
+        border: 1px solid #c1c1c1;
+    }
+    .user-item {
+        &__name {
+            padding-top: 10px;
+            font-size: 18px;
+        }
+
+        &__job-title {
+            font-size: 16px;
+            display: inline;
+            &:before {
+                content: ' - ';
+            }
+        }
+
+        &__avatar {
+            img&,
+            svg& {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        &__extra {
+            display: block;
+        }
+    }
+}
