@@ -4,6 +4,7 @@
     &__header {
         font-size: 14px;
         margin-bottom: 10px;
+        margin-top: 20px;
         font-weight: normal;
     }
 
@@ -43,14 +44,31 @@
             margin-right: 0;
         }
     }
+
+    &__avatar {
+        width: 160px;
+        height: 160px;
+        clip-path: circle(50%);
+    }
+
+    &__avatar-container {
+        display: none;
+        border-right: 1px solid rgb(194, 194, 194);
+        float: left;
+        margin-right: 40px;
+        padding-right: 40px;
+    }
 }
 
 @media (min-width: 640px) {
     .user-details {
+        &__avatar-container {
+            display: block;
+        }
 
         &__header {
             font-size: 18px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         &__label {
