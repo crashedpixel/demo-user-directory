@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import mockUserService from '../../services/user-service/mock.user.service';
 import { UserService } from '../../services/user-service/user.service';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -10,11 +10,27 @@ import { UserService } from '../../services/user-service/user.service';
 export class UserListComponent implements OnInit {
   users = [];
 
-  constructor(private userService: UserService) {
-    // this.users = mockUserService.searchQuery;
-    userService.searchByQuery().subscribe((data) => {
-      this.users = data;
-    });
+  constructor(private userService: UserService,
+    private router: Router) {
+
+      this.router.events.subscribe((event) => {
+        if (event instanceof NavigationEnd) {
+          const url = event.urlAfterRedirects.split('search=');
+          let query: string = '';
+
+          if (url.length > 1) {
+            query = url[1];
+          }
+
+          userService.searchByQuery(query).subscribe((data) => {
+            this.users = data;
+          });
+        }
+      });
+
+      // userService.searchByQuery().subscribe((data) => {
+      //   this.users = data;
+      // });
   }
 
   ngOnInit() {

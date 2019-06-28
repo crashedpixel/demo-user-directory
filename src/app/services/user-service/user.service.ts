@@ -69,15 +69,19 @@ export class UserService {
     return this.http.put(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${details.id}`, JSON.stringify(data), { headers: this.headers }) as Observable<UserData>;
   }
 
-  searchByQuery(query?: String, options: SearchOptions = { order: 'asc', orderBy: 'firstName' }): Observable<UserData[]> {
+  searchByQuery(query: String = '', options: SearchOptions = { order: 'asc', orderBy: 'firstName' }): Observable<UserData[]> {
     let pagination = '';
 
     if (options.page) {
       pagination = `startAt=${options.page * 50}&`;
     }
 
-    let httpParams = new HttpParams({// &search=${query}
-      fromString: `limit=50&${pagination}orderBy=${options.orderBy}&orderByType=${options.order}&selector=firstName,lastName,jobTitle,extension,image(smallSquare)`
+    if (query) {
+      query = `search=${query}&`;
+    }
+
+    let httpParams = new HttpParams({
+      fromString: `limit=50&${pagination}${query}orderBy=${options.orderBy}&orderByType=${options.order}&selector=firstName,lastName,jobTitle,extension,image(smallSquare)`
     });
 
     return this.http.get('https://demo.iofficeconnect.com/external/api/rest/v2/users', { headers: this.headers, params: httpParams }) as Observable<UserData[]>;

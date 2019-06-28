@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import mockUserService from '../../services/user-service/mock.user.service';
 import { UserService } from '../../services/user-service/user.service';
 import { UserData } from 'src/app/userdata';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
@@ -21,7 +20,6 @@ export class UserDetailsComponent implements OnInit {
   constructor(private userService: UserService,
     private route: ActivatedRoute,
     private router: Router) {
-    // this.user = mockUserService.getUserDetails;
 
     this.route.paramMap.subscribe(params => {
       this.userService.getUserDetails(params.get('id')).subscribe((data) => {

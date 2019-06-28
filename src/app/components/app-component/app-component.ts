@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import mockUserService from '../../services/user-service/mock.user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,15 @@ import mockUserService from '../../services/user-service/mock.user.service';
   styleUrls: ['./app-component.less']
 })
 export class AppComponent implements OnInit {
-  title = 'user-directory';
-  users = [];
-  mainUser: any;
+  searchTerm: string = '';
 
-  constructor() {
-    this.mainUser = mockUserService.getUserDetails;
+  constructor(private router: Router) {
   }
+
   ngOnInit() {
+  }
+
+  searchUsers(term: String) {
+    this.router.navigateByUrl(`/users?search=${this.searchTerm}`);
   }
 }

@@ -10,8 +10,8 @@
   <div class="content clearfix">
       <a href="/"><h1><img src="assets/ioffice.png" class="ioffice-logo" alt="ioffice"></h1></a>
       <form action="" class="container search-form">
-          <input name="search" class="input-search" type="text" placeholder="Search...">
-          <button class="button-search">
+          <input name="search" class="input-search" type="text" placeholder="Search..." [(ngModel)]="searchTerm">
+          <button class="button-search" (click)="searchUsers()">
               <svg class="icon-search" role="img">
                 <title>Search</title>
                 <use xlink:href="#icon-search"></use>
