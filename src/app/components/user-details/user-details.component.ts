@@ -19,13 +19,17 @@ export class UserDetailsComponent implements OnInit {
     // this.user = mockUserService.getUserDetails;
 
     this.route.paramMap.subscribe(params => {
-      userService.getUserDetails(params.get('id')).subscribe((data) => {
-        this.user = data;
-      })
+      this.loadUserDetails(params.get('id'));
     });
   }
 
   ngOnInit() {
+  }
+
+  loadUserDetails(id: string | number) {
+    this.userService.getUserDetails(id).subscribe((data) => {
+      this.user = data;
+    })
   }
 
   confirmDeleteUser(e) {
@@ -39,13 +43,13 @@ export class UserDetailsComponent implements OnInit {
     }
   }
 
-  confirmUpdateUser(e) {
+  confirmUpdateUser(e: Event) {
     e.preventDefault();
 
     const res = confirm('Please confirm you want to update user');
     if (res) {
       this.userService.updateUserDetails(this.user).subscribe((data) => {
-        alert('updated');
+        this.loadUserDetails(this.user.id);
       })
     }
   }

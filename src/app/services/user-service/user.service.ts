@@ -53,9 +53,8 @@ export class UserService {
       }), { headers: this.headers });
   }
 
-  // needs cache busting
-  getUserDetails(id: string): Observable<UserData> {
-    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}?selector=firstName,lastName,email,company`, { headers: this.headers }) as Observable<UserData>;
+  getUserDetails(id: string | number): Observable<UserData> {
+    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}?selector=firstName,lastName,email,company&cache=${new Date().getTime()}`, { headers: this.headers }) as Observable<UserData>;
   }
 
   updateUserDetails(details: any): Observable<UserData> {
