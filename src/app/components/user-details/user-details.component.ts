@@ -3,6 +3,7 @@ import { UserService } from '../../services/user-service/user.service';
 import { UserData } from 'src/app/userdata';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl } from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @Component({
   selector: 'app-user-details',

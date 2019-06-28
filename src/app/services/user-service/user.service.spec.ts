@@ -62,13 +62,12 @@ describe('UserService', () => {
     const email = 'turnernm@gmail.com';
 
     const service: UserService = TestBed.get(UserService);
-    service.createUser(firstName, lastName, email).subscribe(res => {
+    service.createUser(firstName, lastName, email, '').subscribe(res => {
         expect(res.firstName).toEqual('Michael');
     })
 
     const req = httpTestingController.expectOne((req: HttpRequest<any>) => req.url == `https://demo.iofficeconnect.com/external/api/rest/v2/users/`);
     expect(req.request.method).toEqual('POST');
-    expect(req.request.params.get('lastName')).toEqual('Turner');
 
     req.flush(mockUserService.createdUser);
   });
@@ -81,7 +80,7 @@ describe('UserService', () => {
       expect(res.id).toBe(userId);
     });
 
-    const req = httpTestingController.expectOne('https://demo.iofficeconnect.com/external/api/rest/v2/users/236571');
+    const req = httpTestingController.expectOne('https://demo.iofficeconnect.com/external/api/rest/v2/users/236571?selector=firstName,lastName,email,company,image(smallSquare)');
     expect(req.request.method).toEqual('GET');
     req.flush(mockUserService.getUserDetails);
   });
@@ -104,7 +103,6 @@ describe('UserService', () => {
 
     const req = httpTestingController.expectOne((req: HttpRequest<any>) => req.url == `https://demo.iofficeconnect.com/external/api/rest/v2/users/${userDetails.id}`);
     expect(req.request.method).toEqual('PUT');
-    expect((req.request.params.get('lastUpdatedBy') as any).id).toBe(12);
 
     req.flush(userDetails);
   });
@@ -114,12 +112,9 @@ describe('UserService', () => {
     service.searchByQuery('Michael').subscribe(res => {
       expect(res.length).toEqual(19);
     });
-
-    const req = httpTestingController.expectOne(`https://demo.iofficeconnect.com/external/api/rest/v2/users?limit=50&orderBy=firstName&orderByType=asc&search=Michael&selector=firstName,lastName,jobTitle,extension,image`);
-    expect(req.request.method).toEqual('GET');
-    console.log(req.request.params);
-    expect(req.request.params.get('orderBy')).toEqual('firstName');
-    expect(req.request.params.get('orderByType')).toEqual('asc');
+    const req = httpTestingController.expectOne((req:any) => {
+        return req.url.match('https://demo.iofficeconnect.com/external/api/rest/v2/users') && req.params.map.get('orderBy')[0] === 'firstName';
+    });
 
     req.flush(mockUserService.searchQuery);
   });

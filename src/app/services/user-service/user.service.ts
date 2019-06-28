@@ -54,7 +54,7 @@ export class UserService {
   }
 
   getUserDetails(id: string | number): Observable<UserData> {
-    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}?selector=firstName,lastName,email,company,image(smallSquare)&cache=${new Date().getTime()}`, { headers: this.headers }) as Observable<UserData>;
+    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}?selector=firstName,lastName,email,company,image(smallSquare)`, { headers: this.headers }) as Observable<UserData>;
   }
 
   updateUserDetails(details: any): Observable<UserData> {
