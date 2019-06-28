@@ -3,6 +3,7 @@ import mockUserService from '../../services/user-service/mock.user.service';
 import { UserService } from '../../services/user-service/user.service';
 import { UserData } from 'src/app/userdata';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user-details',
@@ -35,6 +36,17 @@ export class UserDetailsComponent implements OnInit {
       this.userService.deleteUser(this.user.id).subscribe((data) => {
         this.router.navigate(['/users']);
       });
+    }
+  }
+
+  confirmUpdateUser(e) {
+    e.preventDefault();
+
+    const res = confirm('Please confirm you want to update user');
+    if (res) {
+      this.userService.updateUserDetails(this.user).subscribe((data) => {
+        alert('updated');
+      })
     }
   }
 }

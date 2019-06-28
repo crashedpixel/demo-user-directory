@@ -5,12 +5,12 @@
         </div>
         <h2 class="user-details__header">{{ user.firstName }} {{ user.lastName }}</h2>
         <form action="">
-            <label class="user-details__label"><span>First name:</span> <input class="user-details__input" name="firstName" type="text" [value]="user.firstName"></label>
-            <label class="user-details__label"><span>Last name:</span> <input class="user-details__input" name="lastName" type="text" [value]="user.lastName"></label>
-            <label class="user-details__label"><span>Email:</span> <input class="user-details__input" name="email" type="text" [value]="user.email"></label>
+            <label class="user-details__label"><span>First name:</span> <input class="user-details__input" name="firstName" type="text" [(ngModel)]="user.firstName"></label>
+            <label class="user-details__label"><span>Last name:</span> <input class="user-details__input" name="lastName" type="text" [(ngModel)]="user.lastName"></label>
+            <label class="user-details__label"><span>Email:</span> <input class="user-details__input" name="email" type="text" [(ngModel)]="user.email"></label>
             <button class="user-details__btn">Back</button>
             <button class="user-details__btn" (click)="confirmDeleteUser($event)">Delete</button>
-            <button class="user-details__btn">Update</button>
+            <button class="user-details__btn" (click)="confirmUpdateUser($event)">Update</button>
         </form>
     </div>
 </div>

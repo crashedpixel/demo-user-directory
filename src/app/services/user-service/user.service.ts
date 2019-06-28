@@ -53,17 +53,21 @@ export class UserService {
       }), { headers: this.headers });
   }
 
+  // needs cache busting
   getUserDetails(id: string): Observable<UserData> {
-    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}`, { headers: this.headers }) as Observable<UserData>;
+    return this.http.get(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${id}?selector=firstName,lastName,email,company`, { headers: this.headers }) as Observable<UserData>;
   }
 
-  // need to fix this.........
   updateUserDetails(details: any): Observable<UserData> {
-    let httpParams = new HttpParams({
-      fromObject: { ...details }
-    });
+    let data = {
+      ...details,
+      lastUpdatedBy: {
+        name: 'Michael',
+        id: 237806
+      },
+    }
 
-    return this.http.put(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${details.id}`, '', { params: httpParams }) as Observable<UserData>;
+    return this.http.put(`https://demo.iofficeconnect.com/external/api/rest/v2/users/${details.id}`, JSON.stringify(data), { headers: this.headers }) as Observable<UserData>;
   }
 
   searchByQuery(query?: String, options: SearchOptions = { order: 'asc', orderBy: 'firstName' }): Observable<UserData[]> {
